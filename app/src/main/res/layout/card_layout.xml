@@ -2,9 +2,10 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="10dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp"
@@ -24,67 +25,96 @@
         measurements with previous versions.
     -->
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <!--ImageVIew to display our Course Image-->
-        <ImageView
-            android:id="@+id/imgEvent"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            android:contentDescription="@string/app_name"
-            android:padding="5dp"
-            android:src="" />
 
         <!--Text View to display Course Name-->
-        <TextView
-            android:id="@+id/eventName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/imgEvent"
-            android:text=""
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
 
         <!--Text VIew to display COurse Rating-->
         <!--Image used in present in drawable folder-->
+
+        <ImageView
+            android:id="@+id/imgEvent"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="10dp"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/app_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/eventName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@id/imgEvent"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/eventCity"
+            app:layout_constraintStart_toEndOf="@+id/imgEvent" />
+
         <TextView
             android:id="@+id/eventDate"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/eventName"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/imgEvent"
             android:drawablePadding="2dp"
             android:text=""
-    />
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/eventName"
+            app:layout_constraintStart_toEndOf="@+id/imgEvent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
         <TextView
             android:id="@+id/eventPlace"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/eventName"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="60dp"
             android:layout_toEndOf="@id/imgEvent"
             android:drawablePadding="2dp"
             android:text=""
-            />
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@+id/imgEvent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/eventCity"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/eventName"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="60dp"
             android:layout_toEndOf="@id/imgEvent"
+            android:layout_toRightOf="@id/eventName"
             android:drawablePadding="2dp"
             android:text=""
-            />
-    </RelativeLayout>
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@+id/eventPlace"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/eventTime"
+            android:layout_width="51dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/eventDate"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
