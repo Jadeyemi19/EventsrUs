@@ -37,7 +37,7 @@ static EventsrUsRoomDatabase getDatabase(final Context context) {
                                                 // Wipes and rebuilds instead of migrating
                                                 // if no Migration object.
                                                 // Migration is not part of this practical.
-                                                .addMigrations(Migration)
+                                                .fallbackToDestructiveMigration()
                                                 .addCallback(sRoomDatabaseCallback)
                                                 .build();
                                 }

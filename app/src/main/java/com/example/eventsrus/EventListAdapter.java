@@ -15,22 +15,31 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventViewHolder > {
+public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventViewHolder >  {
     private Context context;
     private final LayoutInflater eInflater;
     private List<Event> allEvents;
     private List<Event> filteredEvent;
+    private RecyclerViewInterface recyclerViewinterface;
 
 
 
 
-   public EventListAdapter(Context context) {
+
+
+   public EventListAdapter(Context context,RecyclerViewInterface recyclerViewInterface ) {
         eInflater=LayoutInflater.from(context);
         this.context=context;
+        this.recyclerViewinterface=recyclerViewInterface;
 
+   }
+    void setEvents(List<Event>events){
+        allEvents=events;
+        notifyDataSetChanged();
     }
 
-    class EventViewHolder extends RecyclerView.ViewHolder {
+
+    public static class EventViewHolder extends RecyclerView.ViewHolder {
         private TextView itemEventName;
         private TextView itemPlace;
         private TextView City;
@@ -43,10 +52,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
         private TextView itemTime;
         private int itemid;
 
-
-
-
-        private EventViewHolder(View itemView) {
+        public EventViewHolder(View itemView,RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
              this.itemEventName = itemView.findViewById(R.id.eventName);
              this.imgEvent= itemView.findViewById(R.id.imgEvent);
@@ -54,16 +60,29 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
              this.itemDate=itemView.findViewById(R.id.eventDate);
              this.City=itemView.findViewById(R.id.eventCity);
              this.itemTime=itemView.findViewById(R.id.eventTime);
+             itemView.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
+                     if(recyclerViewInterface!=null) {
+                         int pos=getAdapterPosition();
+                         if (pos!=RecyclerView.NO_POSITION){
+                             recyclerViewInterface.onitemClick(pos);
+                                        }
+
+                     }
+                     }
+
+             });
 
 
-
+             }
 
         }
-    }
-    void setEvents(List<Event>events){
-        allEvents=events;
-        notifyDataSetChanged();
-    }
+
+
+
+
+
 
 
 
@@ -105,7 +124,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
     @Override
     public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = eInflater.inflate(R.layout.card_layout, parent, false);
-        return new EventViewHolder(itemView);
+        return new EventViewHolder(itemView,recyclerViewinterface);
     }
 
 
@@ -116,6 +135,9 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             return allEvents.size();
         else return 0;
     }
+
+
+
 
 
     }

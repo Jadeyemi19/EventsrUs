@@ -16,6 +16,8 @@ public interface EventDao {
      @Query("SELECT * FROM event_table")
     LiveData<List<Event>> getAllEvents();
 
+
+
      @Query("SELECT * FROM event_table WHERE city=:city")
      LiveData<List<Event>>getAllEventsbyCity(String city);
 
