@@ -1,11 +1,15 @@
 package com.example.eventsrus;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -18,11 +22,13 @@ import java.util.List;
 
 
 public class DiscoveryFragment extends Fragment implements RecyclerViewInterface {
+    private static int REQUEST_LOCATION_PERMISSION=3;
     private LiveData<List<Event>> allevents;
     private EventListAdapter listAdapter;
     private RecyclerView eventRV;
     private EventViewModel viewmodel;
     List<Event> nonLiveDataevents;
+
 
 
     public DiscoveryFragment() {
@@ -36,6 +42,7 @@ public class DiscoveryFragment extends Fragment implements RecyclerViewInterface
         MainActivity mainActivity = (MainActivity) getActivity();
         viewmodel = mainActivity.getEventViewModel();
         allevents = viewmodel.getAllEvents();
+        enableMyLocation();
 
 
     }
@@ -48,7 +55,7 @@ public class DiscoveryFragment extends Fragment implements RecyclerViewInterface
         Context context = view.getContext();
         eventRV = view.findViewById(R.id.eventCards);
 
-        allevents.observe(this, new Observer<List<Event>>() {
+        allevents.observe(getViewLifecycleOwner(), new Observer<List<Event>>() {
             @Override
             public void onChanged(final List<Event> events) {
                 // Update the cached copy of the words in the adapter.
@@ -70,19 +77,32 @@ public class DiscoveryFragment extends Fragment implements RecyclerViewInterface
     public void onitemClick(int Position) {
         Bundle args = new Bundle();
         args.putInt("Event ID", nonLiveDataevents.get(Position).getId());
-        args.putString("Event Description", nonLiveDataevents.get(Position).getDescription());
-        args.putString("Event Name", nonLiveDataevents.get(Position).getName());
-        args.putString("Event Place", nonLiveDataevents.get(Position).getPlace());
-        args.putString("Event City", nonLiveDataevents.get(Position).getCity());
-        args.putString("Event Time", nonLiveDataevents.get(Position).getTime());
-        args.putString("Event Address", nonLiveDataevents.get(Position).getAddress());
-        args.putString("Event Postcode", nonLiveDataevents.get(Position).getPostCode());
-        args.putString("Event Image", nonLiveDataevents.get(Position).getImgDesc());
-        args.putString("Event Type", nonLiveDataevents.get(Position).getType());
+        args.putString("EventDescription", nonLiveDataevents.get(Position).getDescription());
+        args.putString("EventName", nonLiveDataevents.get(Position).getName());
+        args.putString("EventPlace", nonLiveDataevents.get(Position).getPlace());
+        args.putString("EventCity", nonLiveDataevents.get(Position).getCity());
+        args.putString("EventTime", nonLiveDataevents.get(Position).getTime());
+        args.putString("EventAddress", nonLiveDataevents.get(Position).getAddress());
+        args.putString("EventPostcode", nonLiveDataevents.get(Position).getPostCode());
+        args.putString("EventImage", nonLiveDataevents.get(Position).getImgDesc());
+        args.putString("EventType", nonLiveDataevents.get(Position).getType());
         NavHostFragment navHostFragment = (NavHostFragment) getParentFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavController navHost = navHostFragment.getNavController();
         navHost.navigate(R.id.action_discoveryFragment_to_expandedEventCard,args);
 
 
     }
-}
+
+
+        private void enableMyLocation() {
+            if (ContextCompat.checkSelfPermission(getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+
+            } else {
+                ActivityCompat.requestPermissions(getActivity(), new String[]
+                                {Manifest.permission.ACCESS_FINE_LOCATION},
+                        REQUEST_LOCATION_PERMISSION);
+            }
+        }
+    }
