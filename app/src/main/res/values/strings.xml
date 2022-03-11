@@ -2,5 +2,6 @@
     <string name="app_name">EventsrUs</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="google_maps_key">AIzaSyDR9dBCCEatw1vQNVBWEfWceEJ-OAU-gxM</string>
+    <string name="discovery">Discovery</string>
 
 </resources>
