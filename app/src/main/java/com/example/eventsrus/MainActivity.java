@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,14 +22,15 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
-        NavController navController= Navigation.findNavController(this,R.id.nav_host_fragment);
-        setupBottomNavMenu(navController);
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.discoveryFragment, R.id.savedEventsFragment, R.id.profileFragment)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navView, navController);
 
-    }
 
-    private void setupBottomNavMenu(NavController navController) {
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        NavigationUI.setupWithNavController(bottomNav, navController);
     }
 
 
