@@ -29,12 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--ImageVIew to display our Course Image-->
 
-        <!--Text View to display Course Name-->
-
-        <!--Text VIew to display COurse Rating-->
-        <!--Image used in present in drawable folder-->
 
         <ImageView
             android:id="@+id/imgEvent"

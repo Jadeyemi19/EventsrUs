@@ -4,23 +4,25 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventViewHolder> {
+public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventViewHolder> implements Filterable {
     private Context context;
     private final LayoutInflater eInflater;
     private List<Event> allEvents;
-    private List<Event> filteredEvent;
+    private List<Event> alleventsfull;
     private RecyclerViewInterface recyclerViewinterface;
 
 
@@ -33,11 +35,47 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
 
     void setEvents(List<Event> events) {
         allEvents = events;
+        alleventsfull= new ArrayList<>(events);
         notifyDataSetChanged();
     }
 
+    @Override
+    public Filter getFilter() {
+   return eventFilter;
+    }
 
-    public static class EventViewHolder extends RecyclerView.ViewHolder {
+ private final Filter eventFilter=new Filter() {
+     @Override
+     protected FilterResults performFiltering(CharSequence constraint) {
+             List<Event> filteredList=new ArrayList<>();
+         if (constraint == null || constraint.length() == 0) {
+             filteredList.addAll(alleventsfull);
+         }else {
+             String filterPattern = constraint.toString().toLowerCase().trim();
+
+             for (Event event : allEvents) {
+                 if (event.getName().toLowerCase().contains(filterPattern))
+                     filteredList.add(event);
+             }
+         }
+         FilterResults results = new FilterResults();
+         results.values = filteredList;
+         results.count = filteredList.size();
+         return results;
+     }
+
+     @Override
+     protected void publishResults(CharSequence constraint, FilterResults results) {
+         allEvents.clear();
+         allEvents.addAll((ArrayList) results.values);
+         notifyDataSetChanged();
+
+     }
+ };
+
+
+
+     public static class EventViewHolder extends RecyclerView.ViewHolder {
         private TextView itemEventName;
         private TextView itemPlace;
         private TextView City;

@@ -2,20 +2,20 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title= "@+id/discoveryFragment"
-        android:id="@+id/DiscoveryFragment"
+        android:title= "Discovery"
+        android:id="@+id/discoveryFragment"
         android:enabled="true"
         android:icon= "@drawable/ic_explore"
         />
     <item
         android:id="@+id/savedEventsFragment"
         android:title="SavedEvents"
-        android:enabled="false"
+        android:enabled="true"
         android:icon="@drawable/ic_savedevents"/>
     <item
         android:id="@+id/profileFragment"
         android:title="Profile"
-        android:enabled="false"
+        android:enabled="true"
         android:icon="@drawable/ic_profile"/>
 
 

@@ -2,5 +2,7 @@
     <string name="app_name">EventsrUs</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="google_maps_key">templateMergeStrategy="preserve" translatable="false">AIzaSyDR9dBCCEatw1vQNVBWEfWceEJ-OAU-gxM</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyD1ou7UAC2p2PlcsAlStFg38m7ATTiV5lA</string>
+    <string name="about">About</string>
+    <string name="imageforevent">ImageforEvent</string>
 </resources>
