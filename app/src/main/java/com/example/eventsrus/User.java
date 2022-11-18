@@ -8,35 +8,35 @@ import androidx.room.PrimaryKey;
 
 @Entity( tableName = "users")
 public class User {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo
-    private int Userid;
+    private int userid;
     @ColumnInfo(name = "forename")
     private String forename;
     @ColumnInfo(name = "surname")
     private String surname;
     @ColumnInfo(name = "email")
     private String email;
-    @ColumnInfo(name="username")
-    private String username;
+
     @ColumnInfo(name="password")
     private String password;
 
     @Ignore
-    public User(@NonNull String forename,String surname,String email,String password,String username){
+    public User(@NonNull String forename,String surname,String email,String password){
         this.forename=forename;
         this.surname=surname;
         this.email=email;
         this.password=password;
-        this.username=username;
+  ;
     }
 
-    public User( int Userid,String forename,String surname,String email,String password,String username){
+    public User(int userid,String forename, String surname, String email, String password){
         this.forename=forename;
         this.surname=surname;
         this.email=email;
         this.password=password;
-        this.username=username;
+        this.userid=userid;
+       ;
     }
 
     public String getEmail() {
@@ -55,11 +55,7 @@ public class User {
         return surname;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public int getUserid() {
-        return Userid;
+        return userid;
     }
 }

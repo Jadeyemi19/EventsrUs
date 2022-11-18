@@ -1,26 +1,26 @@
 package com.example.eventsrus.Model;
 
 public class Coord {
-    public int lon;
-    public int lat;
+    public double lon;
+    public double lat;
 
 
     public Coord() {
     }
 
-    public int getLon() {
+    public double getLon() {
         return lon;
     }
 
-    public void setLon(int lon) {
+    public void setLon(double lon) {
         this.lon = lon;
     }
 
-    public int getLat() {
+    public double getLat() {
         return lat;
     }
 
-    public void setLat(int lat) {
+    public void setLat(long lat) {
         this.lat = lat;
     }
 

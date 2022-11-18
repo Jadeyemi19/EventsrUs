@@ -52,6 +52,7 @@ public class DiscoveryFragment extends Fragment implements RecyclerViewInterface
         enableMyLocation();
 
 
+
     }
 
 
@@ -106,18 +107,20 @@ public class DiscoveryFragment extends Fragment implements RecyclerViewInterface
         if(bottomNav.getVisibility()==View.GONE){
             bottomNav.setVisibility(View.VISIBLE);
         }
+       // ((AppCompatActivity) getActivity()).getSupportActionBar().show();
     }
 
 
     @Override
     public void onitemClick(int Position) {
         Bundle args = new Bundle();
-        args.putInt("Event ID", nonLiveDataevents.get(Position).getId());
+        args.putInt("eventID", nonLiveDataevents.get(Position).getId());
         args.putString("description", nonLiveDataevents.get(Position).getDescription());
         args.putString("name", nonLiveDataevents.get(Position).getName());
         args.putString("place", nonLiveDataevents.get(Position).getPlace());
         args.putString("city", nonLiveDataevents.get(Position).getCity());
         args.putString("time", nonLiveDataevents.get(Position).getTime());
+        args.putString("date",nonLiveDataevents.get(Position).getDate());
         args.putString("address", nonLiveDataevents.get(Position).getAddress());
         args.putString("postcode", nonLiveDataevents.get(Position).getPostCode());
         args.putString("image", nonLiveDataevents.get(Position).getImgDesc());

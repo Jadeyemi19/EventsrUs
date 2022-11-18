@@ -1,6 +1,7 @@
 package com.example.eventsrus;
 
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity  {
     private EventViewModel eventViewModel;
     private static final String TAG="MainActivity";
     private static final int ERROR_DIALOG_REQUEST=9001;
+    SharedPreferences sharedPreferences;
+    String sharedPrefFile;
 
     private AppBarConfiguration appBarConfiguration;
 
@@ -33,15 +36,15 @@ public class MainActivity extends AppCompatActivity  {
         eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavbar);
         setupBottomNav(bottomNavigationView);
+        sharedPrefFile= "com.example.android.sharedprefs";
+        sharedPreferences= getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
 
 
     }
 
 
-    public void hideBottomNav(){
 
-    }
     protected void setupBottomNav(BottomNavigationView view){
       appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.discoveryFragment, R.id.savedEventsFragment, R.id.profileFragment)

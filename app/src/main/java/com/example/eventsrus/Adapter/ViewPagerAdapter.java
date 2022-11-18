@@ -20,7 +20,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         super(fm);
     }
 
-     public void addFragment(Fragment fragment,String title){
+    @NonNull
+    @Override
+    public Fragment getItem(int position) {
+        return fragmentList.get(position);
+    }
+
+    public void addFragment(Fragment fragment,String title){
          fragmentList.add(fragment);
          fragmentTitle.add(title);
     }
@@ -28,16 +34,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 0;
-    }
-     @Override
-    public CharSequence getPageTitle(int position){
-         return fragmentTitle.get(position);
+        return fragmentList.size();
     }
 
-    @NonNull
     @Override
-    public Fragment getItem(int position) {
-       return fragmentList.get(position);
+    public CharSequence getPageTitle(int position){
+        return fragmentTitle.get(position);
     }
 }

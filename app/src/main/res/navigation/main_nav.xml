@@ -11,26 +11,144 @@
         tools:layout="@layout/fragment_discovery" >
         <action
             android:id="@+id/action_discoveryFragment_to_expandedEventCard"
-            app:destination="@id/expandedEventCard" />
+            app:destination="@id/expandedEventCard"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/expandedEventCard"
         android:name="com.example.eventsrus.ExpandedEventCard"
         android:label=""
-        tools:layout="@layout/fragment_expanded__event__card" />
+        tools:layout="@layout/fragment_expanded__event__card" >
+        <action
+            android:id="@+id/action_expandedEventCard_to_weatherFragment"
+            app:destination="@id/weatherFragment" />
+        <action
+            android:id="@+id/action_expandedEventCard_to_expandedcard_notloggedin"
+            app:destination="@id/expandedcard_notloggedin" />
+        <action
+            android:id="@+id/action_expandedEventCard_to_nearByPlacesFragment"
+            app:destination="@id/nearByPlacesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/savedEventsFragment"
         android:name="com.example.eventsrus.SavedEventsFragment"
         android:label="Saved Events"
-        tools:layout="@layout/fragment_saved_events" />
+        tools:layout="@layout/fragment_saved_events" >
+        <action
+            android:id="@+id/action_savedEventsFragment_to_expandedEventCard"
+            app:destination="@id/expandedEventCard" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.eventsrus.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_profile_notLoggedin"
+            app:destination="@id/profile_notLoggedin" />
+    </fragment>
     <fragment
         android:id="@+id/weatherFragment"
         android:name="com.example.eventsrus.WeatherFragment"
-        android:label="fragment_weather"
+        android:label="Weather"
         tools:layout="@layout/fragment_weather" />
+    <fragment
+        android:id="@+id/login_page"
+        android:name="com.example.eventsrus.login_page"
+        android:label="fragment_login_page"
+        tools:layout="@layout/fragment_login_page" >
+        <action
+            android:id="@+id/action_login_page_to_savedEventsFragment"
+            app:destination="@id/savedEventsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.eventsrus.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_savedEventsFragment"
+            app:destination="@id/savedEventsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notLoggedin"
+        android:name="com.example.eventsrus.NotLoggedin"
+        android:label="notlogged_in"
+        tools:layout="@layout/notlogged_in" >
+
+        <action
+            android:id="@+id/action_notLoggedin_to_login_page"
+            app:destination="@id/login_page" />
+        <action
+            android:id="@+id/action_notLoggedin_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/expandedcard_notloggedin"
+        android:name="com.example.eventsrus.expandedcard_notloggedin"
+        android:label="fragment_expandedcard_notloggedin"
+        tools:layout="@layout/fragment_expandedcard_notloggedin" >
+        <action
+            android:id="@+id/action_expandedcard_notloggedin_to_expandedcard_register"
+            app:destination="@id/expandedcard_register" />
+        <action
+            android:id="@+id/action_expandedcard_notloggedin_to_expandedcard_login"
+            app:destination="@id/expandedcard_login" />
+    </fragment>
+    <fragment
+        android:id="@+id/expandedcard_login"
+        android:name="com.example.eventsrus.expandedcard_login"
+        android:label="fragment_expandedcard_login"
+        tools:layout="@layout/fragment_expandedcard_login" >
+        <action
+            android:id="@+id/action_expandedcard_login_to_expandedEventCard"
+            app:destination="@id/expandedEventCard" />
+    </fragment>
+    <fragment
+        android:id="@+id/expandedcard_register"
+        android:name="com.example.eventsrus.expandedcard_register"
+        android:label="fragment_expandedcard_register"
+        tools:layout="@layout/fragment_expandedcard_register" >
+        <action
+            android:id="@+id/action_expandedcard_register_to_expandedEventCard"
+            app:destination="@id/expandedEventCard" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile_notLoggedin"
+        android:name="com.example.eventsrus.Profile_notLoggedin"
+        android:label="fragment_profile_not_loggedin"
+        tools:layout="@layout/fragment_profile_not_loggedin" >
+        <action
+            android:id="@+id/action_profile_notLoggedin_to_profile_login"
+            app:destination="@id/profile_login" />
+        <action
+            android:id="@+id/action_profile_notLoggedin_to_profile_register2"
+            app:destination="@id/profile_register" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/profile_login"
+        android:name="com.example.eventsrus.Profile_login"
+        android:label="fragment_profile_login"
+        tools:layout="@layout/fragment_profile_login" >
+        <action
+            android:id="@+id/action_profile_login_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile_register"
+        android:name="com.example.eventsrus.profile_register"
+        android:label="fragment_profile_register"
+        tools:layout="@layout/fragment_profile_register" />
+    <fragment
+        android:id="@+id/forecastFragment"
+        android:name="com.example.eventsrus.ForecastFragment"
+        android:label="fragment_forecast"
+        tools:layout="@layout/fragment_forecast" />
+    <fragment
+        android:id="@+id/nearByPlacesFragment"
+        android:name="com.example.eventsrus.NearByPlacesFragment"
+        android:label="Nearby"
+        tools:layout="@layout/fragment_near_by_places" />
 </navigation>

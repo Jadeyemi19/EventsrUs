@@ -54,7 +54,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
              String filterPattern = constraint.toString().toLowerCase().trim();
 
              for (Event event : allEvents) {
-                 if (event.getName().toLowerCase().contains(filterPattern))
+                 if (event.getName().toLowerCase().contains(filterPattern)||event.getCity().toLowerCase().contains(filterPattern))
                      filteredList.add(event);
              }
          }
@@ -130,6 +130,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             holder.itemAddress = current.getAddress();
             holder.itemPostcode = current.getPostCode();
             holder.itemid = current.getId();
+            holder.itemPlace.setText(current.getPlace());
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", java.util.Locale.ENGLISH);
             try {
                 Date myDate = sdf.parse(current.getDate());

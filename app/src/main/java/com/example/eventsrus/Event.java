@@ -44,7 +44,7 @@ public class Event {
     this.description=description;
     this.place=place;
     this.type=type;
-    this.id=0;
+
 
     }
 
@@ -61,7 +61,8 @@ public class Event {
         this.description=description;
         this.place=place;
         this.type=type;
-        this.id=0;
+        this.id=id;
+
 
     }
 

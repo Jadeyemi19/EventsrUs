@@ -5,4 +5,11 @@
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyD1ou7UAC2p2PlcsAlStFg38m7ATTiV5lA</string>
     <string name="about">About</string>
     <string name="imageforevent">ImageforEvent</string>
+
+
+    <string name="NotLoggedin"> Log in or register to  save and see your favourite events</string>
+    <string name="log_in">Log in</string>
+    <string name="register">Register</string>
+    <string name="explore_events"> <u>Explore events</u> </string>
+    <string name="UsernameHint">example@eventsRus.com</string>
 </resources>

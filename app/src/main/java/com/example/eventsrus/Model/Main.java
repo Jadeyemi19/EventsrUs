@@ -5,7 +5,7 @@ public class Main {
     public double feels_like;
     public double temp_min;
     public double temp_max;
-    public int pressure;
+    public long pressure;
     public int humidity;
 
 
@@ -44,7 +44,7 @@ public class Main {
         this.temp_max = temp_max;
     }
 
-    public int getPressure() {
+    public long getPressure() {
         return pressure;
     }
 
